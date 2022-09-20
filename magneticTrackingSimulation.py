@@ -30,7 +30,7 @@ sensorArray.magnetObject = copy.deepcopy(capsule)
 
 # estimator variables
 stateBounds = (np.array([0., 0., 0., 0., 0.]), np.array([0.1, 0.1, 0.1, 2*np.pi, 2*np.pi]))
-initEstimate = np.random.uniform(stateBounds[0], stateBounds[1])
+initEstimate = np.random.uniform(*stateBounds)
 measFcn = sensorArray.measureState
 estimator = modelBasedEstimator.lsq_modelBasedEstimator(initEstimate, measFcn, stateBounds=stateBounds)
 
