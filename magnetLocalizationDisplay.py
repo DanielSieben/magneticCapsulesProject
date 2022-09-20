@@ -147,6 +147,7 @@ class magnetLocalizationDisplay:
         self.rawDataFig.canvas.draw()
         self.rawDataFig.canvas.flush_events()
 
+    # TODO double check if spherical coordinates here is faster than htm implementation
     def update3DData(self, newPoses, poseType='actual'):
         self.magPoseHist[poseType][:-1, :] = self.magPoseHist[poseType][1:, :]
         self.magPoseHist[poseType][-1] = newPoses
