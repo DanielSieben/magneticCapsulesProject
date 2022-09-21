@@ -214,13 +214,10 @@ if __name__ == '__main__': # example display
         for ny in range(3):
             if nx == 1 and ny == 1:
                 sensorPoses.append([nx * 0.05, ny * 0.05, 0.01, np.pi/4, 0, 0])
-                predSensorPoses.append([nx * 0.05, ny * 0.05, 0, np.pi/4, 0, 0])
+                predSensorPoses.append([nx * 0.05, ny * 0.05, 0, np.pi/6, 0, 0])
                 continue
             sensorPoses.append([nx * 0.05, ny * 0.05, 0, 0, 0, 0])
-            predSensorPoses.append([nx * 0.05, ny * 0.05, -0.005,
-                                    np.random.uniform(0, np.pi),
-                                    np.random.uniform(0, np.pi),
-                                    np.random.uniform(0, np.pi)])
+            predSensorPoses.append([nx * 0.05, ny * 0.05, -0.005, *np.random.uniform(-np.pi, np.pi, size=3)])
     sensorPoses = np.array(sensorPoses).flatten()
     disp.updateSensorData(sensorPoses)
     predSensorPoses = np.array(predSensorPoses).flatten()
@@ -231,14 +228,9 @@ if __name__ == '__main__': # example display
         disp.updateRawData(newData, x)
         newPose = np.array([0.05 * math.cos(x * 0.25) + 0.05,
                             0.05 * math.sin(x * 0.25) + 0.05,
-                            x * 0.00025,
+                            x * 0.0005,
                             np.pi / 2,
                             x * 0.1])
         disp.update3DData(newPose)
-        newPredPose = np.array([0.05 * math.cos(x * 0.25) + 0.05,
-                                0.05 * math.sin(x * 0.25) + 0.05,
-                                x * 0.00025 + 0.01,
-                                np.pi / 2,
-                                x * 0.1])
+        newPredPose = newPose + np.random.normal(0, 0.01, size=5)
         disp.update3DData(newPredPose, 'predicted')
-    plt.show()
