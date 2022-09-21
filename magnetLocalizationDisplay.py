@@ -234,3 +234,4 @@ if __name__ == '__main__': # example display
         disp.update3DData(newPose)
         newPredPose = newPose + np.random.normal(0, 0.01, size=5)
         disp.update3DData(newPredPose, 'predicted')
+    plt.show()
